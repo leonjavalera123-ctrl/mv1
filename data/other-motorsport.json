@@ -1,0 +1,20 @@
+{
+  "_comment": "Hand-edited list of documented non-F1 appearances. Add a new object to 'entries' for each event. 'youtubeVideoId' must be from an official channel (event organizer, team, or broadcaster); leave it null if no official video exists. 'result' is free text.",
+  "entries": [
+    {
+      "id": "example-entry",
+      "hidden": true,
+      "title": "Example — delete or set hidden:false when adding real entries",
+      "category": "GT3 Endurance",
+      "event": "Event name",
+      "date": "2025-01-01",
+      "team": "Team name",
+      "car": "Car name",
+      "result": "P1 overall",
+      "description": "One or two sentences on why this outing mattered.",
+      "sourceUrl": "https://example.com/official-result-or-report",
+      "youtubeVideoId": null,
+      "youtubeChannel": null
+    }
+  ]
+}
