@@ -1,0 +1,80 @@
+---
+// Animated stat wall of records held. Numeric values get the same
+// data-count count-up treatment as the hero; string records (age-based)
+// render as-is.
+import { records } from '../lib/records';
+---
+
+<section class="section records carbon" id="records" aria-labelledby="records-title">
+  <div class="container">
+    <p class="kicker">The records wall</p>
+    <h2 id="records-title">Rewriting the book</h2>
+
+    <ul class="wall" role="list">
+      {records.map((record) => (
+        <li class="record">
+          <span class="value">
+            {typeof record.value === 'number' ? (
+              <span data-count={record.value}>{record.value}</span>
+            ) : (
+              <span class="text-value">{record.value}</span>
+            )}
+          </span>
+          <span class="label">{record.label}</span>
+          <p class="context">{record.context}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .records h2 {
+    margin-block: 0.8rem 2.4rem;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  }
+
+  .wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+  }
+
+  .record {
+    padding: 1.3rem 1.4rem;
+    background: color-mix(in srgb, var(--c-surface) 80%, transparent);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+  }
+
+  .record .value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--c-gold);
+  }
+
+  .record .text-value {
+    font-size: 2.2rem;
+  }
+
+  .record .label {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-text);
+  }
+
+  .context {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--c-text-dim);
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+// Beyond F1: documented non-F1 outings from hand-edited
+// data/other-motorsport.json. Entries with hidden:true (like the shipped
+// example) are skipped; the whole section disappears when there's nothing
+// to show.
+import VideoFacade from './VideoFacade.astro';
+import data from '../../data/other-motorsport.json';
+import { shortDate } from '../lib/format';
+
+const entries = data.entries.filter((e: any) => !e.hidden);
+---
+
+{entries.length > 0 && (
+  <section class="section beyond" id="beyond-f1" aria-labelledby="beyond-title">
+    <div class="container">
+      <p class="kicker">Beyond F1</p>
+      <h2 id="beyond-title">Any car, any series</h2>
+
+      <ul class="entries" role="list">
+        {entries.map((entry: any) => (
+          <li class="entry">
+            <div class="words">
+              <p class="kicker">{entry.category} · {shortDate(entry.date)}</p>
+              <h3>{entry.event}</h3>
+              <p class="detail">
+                {[entry.team, entry.car].filter(Boolean).join(' · ')}
+                {entry.result && <strong> — {entry.result}</strong>}
+              </p>
+              <p class="desc">{entry.description}</p>
+              {entry.sourceUrl && (
+                <a href={entry.sourceUrl} rel="external noopener">Result & report ↗</a>
+              )}
+            </div>
+            {entry.youtubeVideoId && (
+              <VideoFacade videoId={entry.youtubeVideoId} title={`${entry.event} — official video`} />
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .beyond h2 {
+    margin-block: 0.8rem 2rem;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  }
+
+  .entries {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .entry {
+    display: grid;
+    gap: 1.4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 50rem) {
+    .entry {
+      grid-template-columns: 5fr 7fr;
+    }
+  }
+
+  .entry h3 {
+    margin-block: 0.5rem;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    color: var(--c-orange);
+  }
+
+  .detail strong {
+    color: var(--c-gold);
+  }
+
+  .desc {
+    margin-top: 0.5rem;
+    max-width: 50ch;
+    color: var(--c-text-dim);
+  }
+</style>

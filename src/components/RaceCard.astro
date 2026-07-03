@@ -29,7 +29,7 @@ const dnf = !race.upcoming && race.finish === null;
 const outcome = race.win ? 'win' : race.podium ? 'podium' : dnf ? 'dnf' : race.upcoming ? 'upcoming' : 'finish';
 ---
 
-<article class:list={['card', outcome]} tabindex="0">
+<article class:list={['card', outcome]}>
   <div class="top">
     <span class="round">R{race.round}</span>
     <span class="country">{countryCode(race.country)}</span>
@@ -127,7 +127,7 @@ const outcome = race.win ? 'win' : race.podium ? 'podium' : dnf ? 'dnf' : race.u
 
   .result.win { color: var(--c-orange); }
   .result.podium { color: var(--c-gold); }
-  .result.dnf { color: var(--c-red); }
+  .result.dnf { color: var(--c-red-text); }
   .result.finish { color: var(--c-text); }
   .result.upcoming { color: var(--c-text-dim); }
 

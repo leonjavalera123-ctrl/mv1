@@ -56,14 +56,14 @@ const stats = [
       <span class="subtitle">The Max Verstappen Story</span>
     </h1>
 
-    <dl class="stats">
+    <ul class="stats" role="list">
       {stats.map((stat) => (
-        <div class="stat">
-          <dd data-count={stat.value}>{stat.value}</dd>
-          <dt>{stat.label}</dt>
-        </div>
+        <li class="stat">
+          <span class="value" data-count={stat.value}>{stat.value}</span>
+          <span class="label">{stat.label}</span>
+        </li>
       ))}
-    </dl>
+    </ul>
   </div>
 
   <a class="scroll-cue" href="#origin" aria-label="Scroll to the story">
@@ -110,6 +110,8 @@ const stats = [
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    list-style: none;
+    padding: 0;
   }
 
   .stat {
@@ -121,14 +123,16 @@ const stats = [
     backdrop-filter: blur(4px);
   }
 
-  .stat dd {
+  .stat .value {
+    display: block;
     font-family: var(--font-display);
     font-size: 2.6rem;
     line-height: 1;
     color: var(--c-orange);
   }
 
-  .stat dt {
+  .stat .label {
+    display: block;
     margin-top: 0.35rem;
     font-size: 0.72rem;
     font-weight: 700;

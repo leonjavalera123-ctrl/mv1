@@ -13,7 +13,9 @@
   --c-line: #232c5c;        /* hairline borders */
   --c-text: #eef0fb;
   --c-text-dim: #9aa3cf;
-  --c-red: #d21f2c;         /* racing red accent */
+  --c-red: #d21f2c;         /* racing red accent (surfaces, bars) */
+  --c-red-text: #ff5a64;    /* red for TEXT on dark surfaces — the base red
+                               fails WCAG 4.5:1 contrast there */
   --c-red-deep: #8f1220;
   --c-gold: #f0b323;        /* champion gold */
   --c-orange: #ff7900;      /* Dutch orange — celebration moments */
@@ -120,6 +122,25 @@ a {
     radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1.5px);
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px;
+}
+
+/* Skip link: invisible until keyboard-focused */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: var(--c-red);
+  color: var(--c-text);
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-300%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
 }
 
 /* Screen-reader-only text */

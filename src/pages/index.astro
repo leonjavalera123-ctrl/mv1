@@ -5,7 +5,9 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SeasonSection from '../components/SeasonSection.astro';
 import SignatureMoments from '../components/SignatureMoments.astro';
+import OtherMotorsport from '../components/OtherMotorsport.astro';
 import NewsFeed from '../components/NewsFeed.astro';
+import RecordsWall from '../components/RecordsWall.astro';
 import CommonsImage from '../components/CommonsImage.astro';
 import Footer from '../components/Footer.astro';
 
@@ -48,7 +50,11 @@ const seasons = Object.values(seasonModules).sort(
 
     <SignatureMoments />
 
+    <OtherMotorsport />
+
     <NewsFeed />
+
+    <RecordsWall />
   </main>
 
   <Footer />
