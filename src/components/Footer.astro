@@ -1,0 +1,45 @@
+---
+// Site footer: legal disclaimer (a hard project constraint), attribution
+// link, fan credit, and a build-time "last updated" stamp.
+const built = new Date().toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<footer class="footer carbon">
+  <div class="container">
+    <p class="disclaimer">
+      MV1 is an unofficial fan site. It is not affiliated with, endorsed by, or
+      connected to Max Verstappen, Red Bull Racing, Oracle, Formula 1, or the
+      FIA. F1® and related marks are trademarks of Formula One Licensing BV.
+      Race footage is embedded from official YouTube channels; images are
+      openly licensed via Wikimedia Commons —
+      <a href={`${import.meta.env.BASE_URL}/attributions/`}>see all attributions</a>.
+    </p>
+    <p class="credit">
+      Built by a fan, for fans <span class="orange">🧡</span> · Data:
+      <a href="https://api.jolpi.ca/" rel="external noopener">Jolpica F1 API</a>
+      · Last updated {built}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--c-line);
+    padding-block: 3rem;
+    font-size: 0.82rem;
+    color: var(--c-text-dim);
+  }
+
+  .disclaimer {
+    max-width: 60rem;
+  }
+
+  .credit {
+    margin-top: 1.2rem;
+  }
+</style>

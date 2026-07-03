@@ -1,17 +1,52 @@
 ---
+// The single scroll page. Phase 2 renders the hero plus two showcase
+// seasons (2016: breakthrough, 2023: champion treatment). The remaining
+// seasons, signature moments, news feed, and records wall arrive in
+// Phases 3–5.
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SeasonSection from '../components/SeasonSection.astro';
+import Footer from '../components/Footer.astro';
 
+import season2016 from '../../data/seasons/2016.json';
+import season2023 from '../../data/seasons/2023.json';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <Hero />
+
+  <main>
+    <section class="section origin" id="origin">
+      <div class="container">
+        <p class="kicker">The Origin · 2015–2016</p>
+        <h2>Too young for a driver's licence.<br />Not too young to win.</h2>
+        <p class="lede">
+          At 17 years and 166 days, Max Verstappen became the youngest driver
+          ever to start a Formula 1 Grand Prix. Eighteen months later, promoted
+          to Red Bull mid-season, he won on debut in Spain — the youngest race
+          winner in the sport's history. These records can never be broken:
+          the rules were changed because of him.
+        </p>
+      </div>
+    </section>
+
+    <SeasonSection season={season2016} />
+    <SeasonSection season={season2023} />
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .origin h2 {
+    margin-block: 1rem 1.5rem;
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    max-width: 22ch;
+  }
+
+  .lede {
+    max-width: 56ch;
+    font-size: 1.08rem;
+    color: var(--c-text-dim);
+  }
+</style>

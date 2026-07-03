@@ -1,0 +1,51 @@
+---
+// Original MV1 wordmark — our own branding, deliberately NOT the F1 or
+// Red Bull logo. Italic skew + a red slash cutting through the baseline.
+interface Props {
+  size?: 'hero' | 'small';
+}
+const { size = 'small' } = Astro.props;
+---
+
+<span class:list={['wordmark', size]} translate="no">
+  <span class="mv">MV</span><span class="one">1</span>
+  <span class="slash" aria-hidden="true"></span>
+</span>
+
+<style>
+  .wordmark {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    line-height: 0.9;
+    transform: skewX(-6deg);
+    user-select: none;
+  }
+
+  .small {
+    font-size: 1.6rem;
+  }
+
+  .hero {
+    font-size: clamp(6rem, 22vw, 15rem);
+  }
+
+  .mv {
+    color: var(--c-text);
+  }
+
+  .one {
+    color: var(--c-orange);
+  }
+
+  .slash {
+    position: absolute;
+    left: -4%;
+    bottom: 8%;
+    width: 108%;
+    height: 0.045em;
+    background: var(--c-red);
+    transform: skewX(-18deg);
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+// One season of the timeline: summary header + race grid. Champion seasons
+// get the gold treatment (banner, gold year, gold hairlines).
+import RaceCard from './RaceCard.astro';
+
+interface Props {
+  season: {
+    season: number;
+    teams: string[];
+    summary: {
+      championshipPosition: number | null;
+      championshipPoints: number;
+      isChampion: boolean;
+      wins: number;
+      podiums: number;
+      poles: number;
+      fastestLaps: number;
+      racesEntered: number;
+      seasonComplete: boolean;
+    };
+    races: any[];
+  };
+}
+
+const { season } = Astro.props;
+const s = season.summary;
+
+const headline = [
+  s.championshipPosition ? `P${s.championshipPosition} in the championship` : 'Season in progress',
+  `${s.championshipPoints} pts`,
+  s.wins ? `${s.wins} win${s.wins > 1 ? 's' : ''}` : null,
+  s.podiums ? `${s.podiums} podium${s.podiums > 1 ? 's' : ''}` : null,
+  s.poles ? `${s.poles} pole${s.poles > 1 ? 's' : ''}` : null,
+].filter(Boolean);
+---
+
+<section class:list={['season section', { champion: s.isChampion }]} id={`season-${season.season}`} aria-labelledby={`season-${season.season}-title`}>
+  <div class="container">
+    {s.isChampion && (
+      <p class="champion-banner">
+        <span aria-hidden="true">★</span> World Champion <span aria-hidden="true">★</span>
+      </p>
+    )}
+    <header class="season-head">
+      <h3 class="year" id={`season-${season.season}-title`}>{season.season}</h3>
+      <div class="head-info">
+        <p class="teams kicker">{season.teams.join(' → ')}</p>
+        <p class="headline">{headline.join(' · ')}</p>
+      </div>
+    </header>
+
+    <ul class="race-grid" role="list">
+      {season.races.map((race) => (
+        <li>
+          <RaceCard race={race} />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .season {
+    border-top: 1px solid var(--c-line);
+  }
+
+  .champion-banner {
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    padding: 0.35rem 1.1rem;
+    background: linear-gradient(100deg, var(--c-gold), #ffd968);
+    color: #241a00;
+    border-radius: 4px;
+    transform: skewX(-8deg);
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .season-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .year {
+    font-size: clamp(4rem, 9vw, 7rem);
+    color: var(--c-text);
+    /* Outlined year, filled gold for title seasons */
+    -webkit-text-stroke: 2px var(--c-text-dim);
+    color: transparent;
+  }
+
+  .champion .year {
+    -webkit-text-stroke: 0;
+    color: var(--c-gold);
+  }
+
+  .champion {
+    border-top-color: color-mix(in srgb, var(--c-gold) 45%, var(--c-line));
+  }
+
+  .head-info {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .headline {
+    font-size: 1rem;
+    color: var(--c-text);
+    font-weight: 600;
+  }
+
+  .race-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+    gap: 0.9rem;
+  }
+</style>

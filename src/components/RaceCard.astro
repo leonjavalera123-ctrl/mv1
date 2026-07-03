@@ -1,0 +1,161 @@
+---
+// One race in a season grid. Static in Phase 2 — Phase 4 turns cards with a
+// youtubeVideoId into click-to-load highlight facades.
+import { countryCode, shortDate, resultLabel } from '../lib/format';
+
+interface Props {
+  race: {
+    round: number;
+    raceName: string;
+    circuit: string;
+    country: string;
+    date: string;
+    grid: number | null;
+    finish: number | null;
+    positionText: string | null;
+    points: number | null;
+    win: boolean;
+    podium: boolean;
+    pole: boolean;
+    fastestLap: boolean;
+    upcoming: boolean;
+  };
+}
+
+const { race } = Astro.props;
+
+const dnf = !race.upcoming && race.finish === null;
+const outcome = race.win ? 'win' : race.podium ? 'podium' : dnf ? 'dnf' : race.upcoming ? 'upcoming' : 'finish';
+---
+
+<article class:list={['card', outcome]} tabindex="0">
+  <div class="top">
+    <span class="round">R{race.round}</span>
+    <span class="country">{countryCode(race.country)}</span>
+    <span class:list={['result', outcome]}>{resultLabel(race)}</span>
+  </div>
+
+  <h4 class="name">{race.raceName.replace(/ Grand Prix$/, ' GP')}</h4>
+  <p class="meta">{race.circuit}</p>
+  <p class="meta">{shortDate(race.date)}</p>
+
+  {!race.upcoming && (
+    <div class="bottom">
+      <span class="grid-finish">
+        {race.grid === 0 ? 'Pits' : `P${race.grid}`} → {race.finish !== null ? `P${race.finish}` : race.positionText}
+      </span>
+      <span class="badges">
+        {race.pole && <abbr class="badge pole" title="Pole position">P</abbr>}
+        {race.fastestLap && <abbr class="badge fl" title="Fastest lap">FL</abbr>}
+        {race.win && <span class="badge win-badge">WIN</span>}
+      </span>
+    </div>
+  )}
+  {race.upcoming && <div class="bottom"><span class="grid-finish">Coming soon</span></div>}
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.9rem 1rem;
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    border-left: 4px solid var(--c-line);
+    border-radius: var(--radius);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-3px);
+    background: var(--c-surface-2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card,
+    .card:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  .card.win { border-left-color: var(--c-orange); }
+  .card.podium { border-left-color: var(--c-gold); }
+  .card.dnf { border-left-color: var(--c-red-deep); }
+  .card.upcoming { border-style: dashed; opacity: 0.75; }
+
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .round { color: var(--c-text-dim); }
+
+  .country {
+    padding: 0.05rem 0.4rem;
+    background: var(--c-bg-deep);
+    border: 1px solid var(--c-line);
+    border-radius: 4px;
+    color: var(--c-text-dim);
+  }
+
+  .result {
+    margin-left: auto;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+  }
+
+  .result.win { color: var(--c-orange); }
+  .result.podium { color: var(--c-gold); }
+  .result.dnf { color: var(--c-red); }
+  .result.finish { color: var(--c-text); }
+  .result.upcoming { color: var(--c-text-dim); }
+
+  .name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .meta {
+    font-size: 0.76rem;
+    color: var(--c-text-dim);
+    line-height: 1.35;
+  }
+
+  .bottom {
+    margin-top: 0.45rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+  }
+
+  .grid-finish { color: var(--c-text-dim); }
+
+  .badges {
+    margin-left: auto;
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .badge {
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .badge.pole { background: var(--c-red-deep); color: var(--c-text); }
+  .badge.fl { background: #3a2f73; color: var(--c-text); }
+  .badge.win-badge { background: var(--c-orange); color: var(--c-bg-deep); }
+</style>

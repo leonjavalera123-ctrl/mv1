@@ -1,0 +1,135 @@
+/* ============================================================
+   MV1 design system
+   Tokens first: every component styles itself from these custom
+   properties, so the visual language changes in exactly one place.
+   ============================================================ */
+
+:root {
+  /* -- palette ------------------------------------------------ */
+  --c-bg: #0a0e27;          /* dark navy base */
+  --c-bg-deep: #060919;     /* deeper navy for contrast bands */
+  --c-surface: #101638;     /* card background */
+  --c-surface-2: #161d47;   /* raised card / hover */
+  --c-line: #232c5c;        /* hairline borders */
+  --c-text: #eef0fb;
+  --c-text-dim: #9aa3cf;
+  --c-red: #d21f2c;         /* racing red accent */
+  --c-red-deep: #8f1220;
+  --c-gold: #f0b323;        /* champion gold */
+  --c-orange: #ff7900;      /* Dutch orange — celebration moments */
+
+  /* -- type --------------------------------------------------- */
+  --font-display: 'Anton', 'Arial Narrow', 'Franklin Gothic Medium', sans-serif;
+  --font-body: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* -- rhythm ------------------------------------------------- */
+  --space-section: clamp(4rem, 10vw, 8rem);
+  --radius: 10px;
+  --content-width: 72rem;
+}
+
+/* -- reset ---------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Anton has a single weight; faux-bold distorts it */
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: var(--c-orange);
+}
+
+:focus-visible {
+  outline: 3px solid var(--c-orange);
+  outline-offset: 2px;
+}
+
+/* -- shared utilities ----------------------------------------- */
+.container {
+  width: min(var(--content-width), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+/* Kicker: the small red-barred label above section headings */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-text-dim);
+}
+
+.kicker::before {
+  content: '';
+  width: 2rem;
+  height: 3px;
+  background: var(--c-red);
+  transform: skewX(-20deg);
+}
+
+/* Carbon-fiber texture band — pure CSS, no image assets */
+.carbon {
+  background-color: var(--c-bg-deep);
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1.5px),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1.5px);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+/* Screen-reader-only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

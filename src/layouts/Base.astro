@@ -1,0 +1,46 @@
+---
+// Base HTML shell: fonts, global CSS, SEO/OG meta. Every page uses this.
+import '@fontsource/anton';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'MV1 — The Max Verstappen Story',
+  description =
+    'A fan-made, scroll-driven journey through Max Verstappen’s Formula 1 career — every season, every race, every record, 2015 to today.',
+} = Astro.props;
+
+// Astro.site + base give the canonical URL once deployed to GitHub Pages.
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0e27" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+
+    <!-- Open Graph / Twitter cards for rich previews in F1 communities -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

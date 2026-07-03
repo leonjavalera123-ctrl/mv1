@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/anton": "^5.2.7",
     "astro": "^7.0.6"
   }
 }
