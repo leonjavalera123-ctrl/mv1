@@ -1,0 +1,40 @@
+# Daily Paddock Feed refresh. Commits data/news.json when the ranking
+# changed, which triggers a site redeploy via deploy.yml.
+name: Update news
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # daily 12:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - run: pip install -r scripts/requirements.txt
+
+      - name: Run the news engine
+        run: python scripts/news_engine.py
+
+      - name: Commit news.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json
+          if git diff --cached --quiet; then
+            echo "No news changes."
+          else
+            git commit -m "data: daily news refresh"
+            git push
+          fi

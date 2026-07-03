@@ -1,0 +1,99 @@
+---
+// The Paddock Feed: latest ranked Verstappen topics from data/news.json
+// (regenerated daily by news_engine.py via GitHub Actions). Cards link OUT
+// to the original source — we never reproduce article content.
+import news from '../../data/news.json';
+
+const formatDate = (iso: string | null) =>
+  iso
+    ? new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+    : '';
+---
+
+{news.topics.length > 0 && (
+  <section class="section feed" id="news" aria-labelledby="news-title">
+    <div class="container">
+      <p class="kicker">The Paddock Feed · updated daily</p>
+      <h2 id="news-title">Latest on Max</h2>
+
+      <ul class="news-grid" role="list">
+        {news.topics.map((topic) => (
+          <li class="news-card">
+            <p class="meta">
+              <span class="source">{topic.source}</span>
+              {topic.published && <time datetime={topic.published}>{formatDate(topic.published)}</time>}
+            </p>
+            <h3>
+              <a href={topic.url} rel="external noopener">{topic.headline}</a>
+            </h3>
+            {topic.summary && <p class="summary">{topic.summary}</p>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .feed h2 {
+    margin-block: 0.8rem 2rem;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  }
+
+  .news-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1rem;
+  }
+
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.1rem 1.2rem;
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+  }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-dim);
+  }
+
+  .source {
+    color: var(--c-orange);
+    font-weight: 700;
+  }
+
+  .news-card h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.4;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .news-card a {
+    color: var(--c-text);
+    text-decoration: none;
+  }
+
+  .news-card a:hover,
+  .news-card a:focus-visible {
+    color: var(--c-orange);
+    text-decoration: underline;
+  }
+
+  .summary {
+    font-size: 0.85rem;
+    color: var(--c-text-dim);
+  }
+</style>

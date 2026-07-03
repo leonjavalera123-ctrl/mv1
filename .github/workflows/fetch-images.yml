@@ -1,0 +1,53 @@
+# Manual-only image fetch from Wikimedia Commons. Opens a PULL REQUEST
+# instead of committing to main, so new images are reviewed by a human
+# before they go live — that review step is a project rule, not a nicety.
+name: Fetch Commons images
+
+on:
+  workflow_dispatch:
+    inputs:
+      queries:
+        description: 'Search queries, separated by | (blank = script defaults)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - run: pip install -r scripts/requirements.txt
+
+      - name: Fetch and license-check images
+        run: |
+          if [ -n "${{ github.event.inputs.queries }}" ]; then
+            IFS='|' read -ra QUERIES <<< "${{ github.event.inputs.queries }}"
+            python scripts/fetch_images.py "${QUERIES[@]}"
+          else
+            python scripts/fetch_images.py
+          fi
+
+      - name: Open review PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: images/commons-update
+          title: 'images: new Wikimedia Commons candidates for review'
+          commit-message: 'images: fetch license-verified Commons candidates'
+          body: |
+            New license-verified images from Wikimedia Commons.
+            Review each image and its entry in `data/attributions.json`,
+            delete any you don't want (and its manifest entry), then merge.
+          add-paths: |
+            public/images/commons/**
+            data/attributions.json
