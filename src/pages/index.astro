@@ -1,15 +1,20 @@
 ---
-// The single scroll page. Phase 2 renders the hero plus two showcase
-// seasons (2016: breakthrough, 2023: champion treatment). The remaining
-// seasons, signature moments, news feed, and records wall arrive in
-// Phases 3–5.
+// The single scroll page: hero → origin → every season 2015–present.
+// Signature moments, news feed, and records wall arrive in Phases 4–5.
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SeasonSection from '../components/SeasonSection.astro';
 import Footer from '../components/Footer.astro';
 
-import season2016 from '../../data/seasons/2016.json';
-import season2023 from '../../data/seasons/2023.json';
+// Load every season file at build time; a new data/seasons/2027.json will
+// appear on the page with zero code changes.
+const seasonModules = import.meta.glob('../../data/seasons/*.json', {
+  eager: true,
+  import: 'default',
+});
+const seasons = Object.values(seasonModules).sort(
+  (a: any, b: any) => a.season - b.season
+);
 ---
 
 <Base>
@@ -30,12 +35,15 @@ import season2023 from '../../data/seasons/2023.json';
       </div>
     </section>
 
-    <SeasonSection season={season2016} />
-    <SeasonSection season={season2023} />
+    {seasons.map((season: any) => <SeasonSection season={season} />)}
   </main>
 
   <Footer />
 </Base>
+
+<script>
+  import '../scripts/animations';
+</script>
 
 <style>
   .origin h2 {

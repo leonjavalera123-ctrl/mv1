@@ -97,8 +97,8 @@ changes.
 
 - [x] Phase 0 — stack confirmed, repo scaffolded, env template, README
 - [x] Phase 1 — Jolpica data scripts + JSON schema
-- [ ] Phase 2 — static site structure + design system
-- [ ] Phase 3 — GSAP scroll animation pass
+- [x] Phase 2 — static site structure + design system
+- [x] Phase 3 — GSAP scroll animation pass
 - [ ] Phase 4 — YouTube facades + Wikimedia image pipeline
 - [ ] Phase 5 — news engine + GitHub Actions automation
 - [ ] Phase 6 — performance/a11y audit + deploy
