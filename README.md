@@ -130,7 +130,7 @@ don't fire `push` events, so it listens for `workflow_run` instead).
 - [x] Phase 3 — GSAP scroll animation pass
 - [x] Phase 4 — YouTube facades + Wikimedia image pipeline
 - [x] Phase 5 — news engine + GitHub Actions automation
-- [ ] Phase 6 — performance/a11y audit + deploy
+- [x] Phase 6 — performance/a11y audit (Lighthouse 99/100/100/100); deploy pending GitHub account setup
 
 ---
 
