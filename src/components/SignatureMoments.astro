@@ -1,0 +1,76 @@
+---
+// The all-timers: big typography, one official embed each, alternating
+// layout. Content comes from hand-curated data/signature-moments.json.
+import VideoFacade from './VideoFacade.astro';
+import data from '../../data/signature-moments.json';
+---
+
+<section class="section moments carbon" id="moments" aria-labelledby="moments-title">
+  <div class="container">
+    <p class="kicker">Signature moments</p>
+    <h2 id="moments-title">Four laps of history</h2>
+
+    <ol class="list" role="list">
+      {data.moments.map((moment, index) => (
+        <li class:list={['moment', { flip: index % 2 === 1, champion: moment.champion }]}>
+          <div class="words">
+            <p class="kicker">{moment.kicker}</p>
+            <h3>{moment.title}</h3>
+            <p class="text">{moment.text}</p>
+          </div>
+          {moment.videoId && (
+            <div class="video">
+              <VideoFacade videoId={moment.videoId} title={moment.videoTitle} />
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .moments h2 {
+    margin-block: 0.8rem 3rem;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .moment {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    align-items: center;
+  }
+
+  @media (min-width: 50rem) {
+    .moment {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .moment.flip .words {
+      order: 2;
+    }
+  }
+
+  .moment h3 {
+    margin-block: 0.7rem 1rem;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: var(--c-orange);
+  }
+
+  .moment.champion h3 {
+    color: var(--c-gold);
+  }
+
+  .text {
+    max-width: 46ch;
+    color: var(--c-text-dim);
+  }
+</style>

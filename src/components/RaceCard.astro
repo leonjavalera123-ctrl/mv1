@@ -19,6 +19,7 @@ interface Props {
     pole: boolean;
     fastestLap: boolean;
     upcoming: boolean;
+    youtubeVideoId?: string | null;
   };
 }
 
@@ -50,6 +51,18 @@ const outcome = race.win ? 'win' : race.podium ? 'podium' : dnf ? 'dnf' : race.u
         {race.win && <span class="badge win-badge">WIN</span>}
       </span>
     </div>
+  )}
+  {race.youtubeVideoId && (
+    <a
+      class="highlights"
+      href={`https://www.youtube.com/watch?v=${race.youtubeVideoId}`}
+      rel="external noopener"
+      data-dialog-video={race.youtubeVideoId}
+      data-dialog-title={`${race.date.slice(0, 4)} ${race.raceName} — Official race highlights`}
+    >
+      <span aria-hidden="true">▶</span> Highlights
+      <span class="sr-only">for the {race.date.slice(0, 4)} {race.raceName}</span>
+    </a>
   )}
   {race.upcoming && <div class="bottom"><span class="grid-finish">Coming soon</span></div>}
 </article>
@@ -158,4 +171,19 @@ const outcome = race.win ? 'win' : race.podium ? 'podium' : dnf ? 'dnf' : race.u
   .badge.pole { background: var(--c-red-deep); color: var(--c-text); }
   .badge.fl { background: #3a2f73; color: var(--c-text); }
   .badge.win-badge { background: var(--c-orange); color: var(--c-bg-deep); }
+
+  .highlights {
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--c-orange);
+  }
+
+  .highlights:hover,
+  .highlights:focus-visible {
+    text-decoration: underline;
+  }
 </style>

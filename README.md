@@ -99,7 +99,7 @@ changes.
 - [x] Phase 1 — Jolpica data scripts + JSON schema
 - [x] Phase 2 — static site structure + design system
 - [x] Phase 3 — GSAP scroll animation pass
-- [ ] Phase 4 — YouTube facades + Wikimedia image pipeline
+- [x] Phase 4 — YouTube facades + Wikimedia image pipeline
 - [ ] Phase 5 — news engine + GitHub Actions automation
 - [ ] Phase 6 — performance/a11y audit + deploy
 

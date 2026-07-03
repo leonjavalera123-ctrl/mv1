@@ -1,0 +1,62 @@
+---
+// Renders a Wikimedia Commons image WITH its visible attribution line —
+// the two are inseparable by design: there is no way to use a fetched
+// image in this codebase without credit appearing under it.
+// `file` must match an entry in data/attributions.json (written by
+// scripts/fetch_images.py, which already verified the license).
+import manifest from '../../data/attributions.json';
+
+interface Props {
+  file: string;
+  alt: string;
+}
+
+const { file, alt } = Astro.props;
+const entry = manifest.images.find((img) => img.file === file);
+if (!entry) {
+  throw new Error(
+    `CommonsImage: "${file}" is not in data/attributions.json. ` +
+      'Only images fetched (and license-verified) by scripts/fetch_images.py can be used.'
+  );
+}
+const src = `${import.meta.env.BASE_URL}/images/commons/${entry.file}`;
+---
+
+<figure class="commons">
+  <img
+    src={src}
+    alt={alt}
+    width={entry.width}
+    height={entry.height}
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption>
+    Photo: {entry.author} ·
+    {entry.licenseUrl ? <a href={entry.licenseUrl} rel="external noopener license">{entry.license}</a> : entry.license}
+    · <a href={entry.sourceUrl} rel="external noopener">Wikimedia Commons</a>
+  </figcaption>
+</figure>
+
+<style>
+  .commons {
+    margin: 0;
+  }
+
+  .commons img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--c-line);
+  }
+
+  figcaption {
+    margin-top: 0.45rem;
+    font-size: 0.72rem;
+    color: var(--c-text-dim);
+  }
+
+  figcaption a {
+    color: var(--c-text-dim);
+  }
+</style>

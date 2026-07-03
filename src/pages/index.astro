@@ -4,6 +4,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import SeasonSection from '../components/SeasonSection.astro';
+import SignatureMoments from '../components/SignatureMoments.astro';
+import CommonsImage from '../components/CommonsImage.astro';
 import Footer from '../components/Footer.astro';
 
 // Load every season file at build time; a new data/seasons/2027.json will
@@ -22,27 +24,47 @@ const seasons = Object.values(seasonModules).sort(
 
   <main>
     <section class="section origin" id="origin">
-      <div class="container">
-        <p class="kicker">The Origin · 2015–2016</p>
-        <h2>Too young for a driver's licence.<br />Not too young to win.</h2>
-        <p class="lede">
-          At 17 years and 166 days, Max Verstappen became the youngest driver
-          ever to start a Formula 1 Grand Prix. Eighteen months later, promoted
-          to Red Bull mid-season, he won on debut in Spain — the youngest race
-          winner in the sport's history. These records can never be broken:
-          the rules were changed because of him.
-        </p>
+      <div class="container origin-grid">
+        <div>
+          <p class="kicker">The Origin · 2015–2016</p>
+          <h2>Too young for a driver's licence.<br />Not too young to win.</h2>
+          <p class="lede">
+            At 17 years and 166 days, Max Verstappen became the youngest driver
+            ever to start a Formula 1 Grand Prix. Eighteen months later, promoted
+            to Red Bull mid-season, he won on debut in Spain — the youngest race
+            winner in the sport's history. These records can never be broken:
+            the rules were changed because of him.
+          </p>
+        </div>
+        <CommonsImage
+          file="max-verstappen-belgium-2015.jpg"
+          alt="17-year-old Max Verstappen driving the #33 Toro Rosso STR10 at the 2015 Belgian Grand Prix, Spa-Francorchamps"
+        />
       </div>
     </section>
 
     {seasons.map((season: any) => <SeasonSection season={season} />)}
+
+    <SignatureMoments />
   </main>
 
   <Footer />
+
+  <!-- Shared lightbox for race-card highlights; iframe injected on demand -->
+  <dialog id="video-dialog" aria-labelledby="video-dialog-title">
+    <div class="dialog-head">
+      <h4 class="dialog-title" id="video-dialog-title"></h4>
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close video">✕</button>
+      </form>
+    </div>
+    <div class="dialog-video"></div>
+  </dialog>
 </Base>
 
 <script>
   import '../scripts/animations';
+  import '../scripts/embeds';
 </script>
 
 <style>
@@ -56,5 +78,59 @@ const seasons = Object.values(seasonModules).sort(
     max-width: 56ch;
     font-size: 1.08rem;
     color: var(--c-text-dim);
+  }
+
+  .origin-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 55rem) {
+    .origin-grid {
+      grid-template-columns: 6fr 5fr;
+    }
+  }
+
+  #video-dialog {
+    width: min(60rem, calc(100vw - 2rem));
+    padding: 0.8rem;
+    background: var(--c-bg-deep);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    color: var(--c-text);
+  }
+
+  #video-dialog::backdrop {
+    background: rgba(4, 6, 16, 0.85);
+  }
+
+  .dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .dialog-title {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: none;
+  }
+
+  .dialog-close {
+    background: var(--c-surface);
+    color: var(--c-text);
+    border: 1px solid var(--c-line);
+    border-radius: 6px;
+    padding: 0.3rem 0.65rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .dialog-close:hover {
+    background: var(--c-red);
   }
 </style>

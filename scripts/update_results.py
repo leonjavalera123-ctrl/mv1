@@ -136,14 +136,16 @@ def build_upcoming_entry(race: dict) -> dict:
 
 
 def existing_video_ids(season_file: Path) -> dict:
-    """Read round -> youtubeVideoId from a previously written season file."""
+    """Read round -> youtubeVideoId from a previously written season file.
+    Preserves "" (= update_highlights.py searched and found nothing) as well
+    as real IDs — only null means "never searched"."""
     if not season_file.exists():
         return {}
     data = json.loads(season_file.read_text(encoding="utf-8"))
     return {
         r["round"]: r["youtubeVideoId"]
         for r in data.get("races", [])
-        if r.get("youtubeVideoId")
+        if r.get("youtubeVideoId") is not None
     }
 
 

@@ -1,0 +1,41 @@
+{
+  "_comment": "Hand-curated all-timer moments. videoId/videoTitle must be from an official channel — verify with: https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<ID>&format=json (author_name must be FORMULA 1, Red Bull, or an official broadcaster).",
+  "moments": [
+    {
+      "id": "spain-2016",
+      "kicker": "Spain · 15 May 2016",
+      "title": "The debut win",
+      "text": "Four days after being promoted from Toro Rosso, Max wins his very first race in Red Bull colours. Aged 18 years and 228 days — the youngest Grand Prix winner in history, a record that still stands.",
+      "videoId": "3B3-C914d_c",
+      "videoTitle": "2016 Spanish Grand Prix: Race Highlights — FORMULA 1",
+      "champion": false
+    },
+    {
+      "id": "brazil-2016",
+      "kicker": "Brazil · 13 November 2016",
+      "title": "The drive in the rain",
+      "text": "Interlagos, monsoon conditions, and a recovery from P16 to the podium in 16 laps — passing car after car around the outside while others crashed out. Widely called one of the greatest wet-weather drives ever seen.",
+      "videoId": "tf71xPW2Ej0",
+      "videoTitle": "Max Verstappen's Mesmerising Drive In The Wet — FORMULA 1",
+      "champion": false
+    },
+    {
+      "id": "abu-dhabi-2021",
+      "kicker": "Abu Dhabi · 12 December 2021",
+      "title": "The final lap",
+      "text": "Level on points with Lewis Hamilton after 21 rounds, on fresh soft tyres for one last lap. Turn 5, lights out on the greatest title fight in a generation — and a first World Championship for the Netherlands.",
+      "videoId": "7QJ-N-AQJYc",
+      "videoTitle": "Race Highlights | 2021 Abu Dhabi Grand Prix — FORMULA 1",
+      "champion": true
+    },
+    {
+      "id": "season-2023",
+      "kicker": "2023 · The record season",
+      "title": "19 wins in a year",
+      "text": "Ten consecutive victories. Nineteen wins from twenty-two races. 575 points — a title won by the biggest margin in the sport's history. The most dominant season Formula 1 has ever seen, sealed at the Yas Marina finale.",
+      "videoId": "9Z6rtYo1qBU",
+      "videoTitle": "Race Highlights | 2023 Abu Dhabi Grand Prix — FORMULA 1",
+      "champion": true
+    }
+  ]
+}
