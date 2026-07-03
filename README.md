@@ -96,7 +96,7 @@ changes.
 ## Roadmap
 
 - [x] Phase 0 — stack confirmed, repo scaffolded, env template, README
-- [ ] Phase 1 — Jolpica data scripts + JSON schema
+- [x] Phase 1 — Jolpica data scripts + JSON schema
 - [ ] Phase 2 — static site structure + design system
 - [ ] Phase 3 — GSAP scroll animation pass
 - [ ] Phase 4 — YouTube facades + Wikimedia image pipeline

@@ -1,0 +1,39 @@
+{
+  "driver": {
+    "name": "Max Verstappen",
+    "code": "VER",
+    "number": 3,
+    "nationality": "Dutch",
+    "dateOfBirth": "1997-09-30",
+    "wikipediaUrl": "http://en.wikipedia.org/wiki/Max_Verstappen"
+  },
+  "career": {
+    "raceStarts": 241,
+    "wins": 71,
+    "podiums": 129,
+    "poles": 51,
+    "fastestLaps": 37,
+    "points": 3517.5,
+    "championshipSeasons": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "championships": 4,
+    "seasons": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  }
+}
