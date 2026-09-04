@@ -10,6 +10,6 @@ import { defineConfig } from 'astro/config';
 // before the first deploy (Astro requires a syntactically valid URL here,
 // so this placeholder must stay URL-shaped).
 export default defineConfig({
-  site: 'https://GITHUB-USERNAME.github.io',
+  site: 'https://leonjavalera123-ctrl.github.io',
   base: '/mv1',
 });
