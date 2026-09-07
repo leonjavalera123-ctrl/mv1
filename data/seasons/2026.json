@@ -5,13 +5,13 @@
   ],
   "summary": {
     "championshipPosition": 6,
-    "championshipPoints": 112,
+    "championshipPoints": 127,
     "isChampion": false,
     "wins": 0,
-    "podiums": 4,
+    "podiums": 5,
     "poles": 0,
     "fastestLaps": 1,
-    "racesEntered": 12,
+    "racesEntered": 13,
     "seasonComplete": false
   },
   "races": [
@@ -335,20 +335,23 @@
       "country": "Italy",
       "date": "2026-09-06",
       "wikipediaUrl": "https://en.wikipedia.org/wiki/2026_Italian_Grand_Prix",
-      "team": null,
-      "qualifying": null,
-      "grid": null,
-      "finish": null,
-      "positionText": null,
-      "status": null,
-      "points": null,
+      "team": "Red Bull",
+      "qualifying": 6,
+      "grid": 5,
+      "finish": 3,
+      "positionText": "3",
+      "status": "Finished",
+      "points": 15,
       "win": false,
-      "podium": false,
+      "podium": true,
       "pole": false,
       "fastestLap": false,
-      "standingAfter": null,
+      "standingAfter": {
+        "position": 6,
+        "points": 127
+      },
       "youtubeVideoId": null,
-      "upcoming": true
+      "upcoming": false
     },
     {
       "round": 14,
