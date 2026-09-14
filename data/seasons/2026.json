@@ -5,13 +5,13 @@
   ],
   "summary": {
     "championshipPosition": 6,
-    "championshipPoints": 127,
+    "championshipPoints": 145,
     "isChampion": false,
     "wins": 0,
-    "podiums": 5,
+    "podiums": 6,
     "poles": 0,
     "fastestLaps": 1,
-    "racesEntered": 13,
+    "racesEntered": 14,
     "seasonComplete": false
   },
   "races": [
@@ -361,20 +361,23 @@
       "country": "Spain",
       "date": "2026-09-13",
       "wikipediaUrl": "https://en.wikipedia.org/wiki/2026_Spanish_Grand_Prix",
-      "team": null,
-      "qualifying": null,
-      "grid": null,
-      "finish": null,
-      "positionText": null,
-      "status": null,
-      "points": null,
+      "team": "Red Bull",
+      "qualifying": 3,
+      "grid": 3,
+      "finish": 2,
+      "positionText": "2",
+      "status": "Finished",
+      "points": 18,
       "win": false,
-      "podium": false,
+      "podium": true,
       "pole": false,
       "fastestLap": false,
-      "standingAfter": null,
+      "standingAfter": {
+        "position": 6,
+        "points": 145
+      },
       "youtubeVideoId": null,
-      "upcoming": true
+      "upcoming": false
     },
     {
       "round": 15,
