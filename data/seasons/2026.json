@@ -4,14 +4,14 @@
     "Red Bull"
   ],
   "summary": {
-    "championshipPosition": 6,
-    "championshipPoints": 188,
+    "championshipPosition": 4,
+    "championshipPoints": 221,
     "isChampion": false,
-    "wins": 1,
-    "podiums": 8,
-    "poles": 1,
+    "wins": 2,
+    "podiums": 9,
+    "poles": 2,
     "fastestLaps": 2,
-    "racesEntered": 16,
+    "racesEntered": 17,
     "seasonComplete": false
   },
   "races": [
@@ -439,20 +439,23 @@
       "country": "Singapore",
       "date": "2026-10-11",
       "wikipediaUrl": "https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix",
-      "team": null,
-      "qualifying": null,
-      "grid": null,
-      "finish": null,
-      "positionText": null,
-      "status": null,
-      "points": null,
-      "win": false,
-      "podium": false,
-      "pole": false,
+      "team": "Red Bull",
+      "qualifying": 1,
+      "grid": 1,
+      "finish": 1,
+      "positionText": "1",
+      "status": "Finished",
+      "points": 25,
+      "win": true,
+      "podium": true,
+      "pole": true,
       "fastestLap": false,
-      "standingAfter": null,
+      "standingAfter": {
+        "position": 4,
+        "points": 221
+      },
       "youtubeVideoId": null,
-      "upcoming": true
+      "upcoming": false
     },
     {
       "round": 18,
