@@ -5,13 +5,13 @@
   ],
   "summary": {
     "championshipPosition": 4,
-    "championshipPoints": 221,
+    "championshipPoints": 236,
     "isChampion": false,
     "wins": 2,
-    "podiums": 9,
+    "podiums": 10,
     "poles": 2,
     "fastestLaps": 2,
-    "racesEntered": 17,
+    "racesEntered": 18,
     "seasonComplete": false
   },
   "races": [
@@ -465,20 +465,23 @@
       "country": "USA",
       "date": "2026-10-25",
       "wikipediaUrl": "https://en.wikipedia.org/wiki/2026_United_States_Grand_Prix",
-      "team": null,
-      "qualifying": null,
-      "grid": null,
-      "finish": null,
-      "positionText": null,
-      "status": null,
-      "points": null,
+      "team": "Red Bull",
+      "qualifying": 2,
+      "grid": 2,
+      "finish": 3,
+      "positionText": "3",
+      "status": "Finished",
+      "points": 15,
       "win": false,
-      "podium": false,
+      "podium": true,
       "pole": false,
       "fastestLap": false,
-      "standingAfter": null,
+      "standingAfter": {
+        "position": 4,
+        "points": 236
+      },
       "youtubeVideoId": null,
-      "upcoming": true
+      "upcoming": false
     },
     {
       "round": 19,
