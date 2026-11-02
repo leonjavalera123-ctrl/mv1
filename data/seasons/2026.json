@@ -4,14 +4,14 @@
     "Red Bull"
   ],
   "summary": {
-    "championshipPosition": 4,
-    "championshipPoints": 236,
+    "championshipPosition": 2,
+    "championshipPoints": 261,
     "isChampion": false,
-    "wins": 2,
-    "podiums": 10,
+    "wins": 3,
+    "podiums": 11,
     "poles": 2,
     "fastestLaps": 2,
-    "racesEntered": 18,
+    "racesEntered": 19,
     "seasonComplete": false
   },
   "races": [
@@ -491,20 +491,23 @@
       "country": "Mexico",
       "date": "2026-11-01",
       "wikipediaUrl": "https://en.wikipedia.org/wiki/2026_Mexico_City_Grand_Prix",
-      "team": null,
-      "qualifying": null,
-      "grid": null,
-      "finish": null,
-      "positionText": null,
-      "status": null,
-      "points": null,
-      "win": false,
-      "podium": false,
+      "team": "Red Bull",
+      "qualifying": 4,
+      "grid": 5,
+      "finish": 1,
+      "positionText": "1",
+      "status": "Finished",
+      "points": 25,
+      "win": true,
+      "podium": true,
       "pole": false,
       "fastestLap": false,
-      "standingAfter": null,
+      "standingAfter": {
+        "position": 2,
+        "points": 261
+      },
       "youtubeVideoId": null,
-      "upcoming": true
+      "upcoming": false
     },
     {
       "round": 20,
