@@ -5,13 +5,13 @@
   ],
   "summary": {
     "championshipPosition": 2,
-    "championshipPoints": 279,
+    "championshipPoints": 304,
     "isChampion": false,
-    "wins": 3,
-    "podiums": 12,
+    "wins": 4,
+    "podiums": 13,
     "poles": 2,
     "fastestLaps": 2,
-    "racesEntered": 20,
+    "racesEntered": 21,
     "seasonComplete": false
   },
   "races": [
@@ -543,20 +543,23 @@
       "country": "USA",
       "date": "2026-11-22",
       "wikipediaUrl": "https://en.wikipedia.org/wiki/2026_Las_Vegas_Grand_Prix",
-      "team": null,
-      "qualifying": null,
-      "grid": null,
-      "finish": null,
-      "positionText": null,
-      "status": null,
-      "points": null,
-      "win": false,
-      "podium": false,
+      "team": "Red Bull",
+      "qualifying": 2,
+      "grid": 1,
+      "finish": 1,
+      "positionText": "1",
+      "status": "Finished",
+      "points": 25,
+      "win": true,
+      "podium": true,
       "pole": false,
       "fastestLap": false,
-      "standingAfter": null,
+      "standingAfter": {
+        "position": 2,
+        "points": 304
+      },
       "youtubeVideoId": null,
-      "upcoming": true
+      "upcoming": false
     },
     {
       "round": 22,
